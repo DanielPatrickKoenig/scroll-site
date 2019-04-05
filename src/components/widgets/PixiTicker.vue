@@ -1,5 +1,5 @@
 <template>
-  <div :id="pwid" :style="WidgetUtils.renderStyle(properties) + 'width:' + (properties.value.toString().split('').length * properties.size * 0.58).toString() + 'px;height:' + (properties.size * 1.2).toString() + 'px;'" class="pixi-ticker resizable-chart">
+  <div :id="pwid" :style="'width:' + (properties.value.toString().split('').length * properties.size * 0.58).toString() + 'px;height:' + (properties.size * 1.2).toString() + 'px;'" class="pixi-ticker resizable-chart">
     <div></div>
   </div>
 </template>
@@ -11,8 +11,7 @@ export default {
   props: ['chartdata', 'colors', 'textcolor', 'title', 'hovertitle', 'sig', 'properties', 'transition'],
   data () {
     return {
-      pwid: WidgetUtils.generateID(),
-      WidgetUtils: WidgetUtils
+      pwid: WidgetUtils.generateID()
     }
   },
   mounted: function () {
@@ -21,7 +20,6 @@ export default {
     var ticker = new Ticker(pm, {content: self.properties.value}, {fontSize: self.properties.size, fill: self.properties.color, fontFamily: self.properties.font, align: 'left', fontWeight: 'bold'}).getContainer()
     pm.app.stage.addChild(ticker)
     ticker.x = self.properties.size * (0.58 / 2)
-    WidgetUtils.initialise(self.properties, self.transition)
   }
 }
 </script>
