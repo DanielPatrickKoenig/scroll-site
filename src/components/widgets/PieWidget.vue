@@ -1,21 +1,19 @@
 <template>
-  <div :style="WidgetUtils.renderStyle(properties)" class="pie-chart resizable-chart">
+  <div class="pie-chart resizable-chart">
     <div v-bind:id="chartid"></div>
   </div>
 </template>
 <script>
   import echarts from 'echarts'
-  import WidgetUtils from '../utils/WidgetUtils.js'
   export default {
     data () {
       return {
         message: 'sup dude',
         chartid: 'CHART_' + Math.random().toString().split('.').join('') + Math.random().toString().split('.').join('') + Math.random().toString().split('.').join(''),
-        chartObject: undefined,
-        WidgetUtils: WidgetUtils
+        chartObject: undefined
       }
     },
-    props: ['chartdata', 'colors', 'textcolor', 'title', 'hovertitle', 'sig', 'properties', 'transition'],
+    props: ['chartdata', 'colors', 'textcolor', 'title', 'hovertitle', 'sig'],
     watch: {
       chartdata: function () {
         var self = this
@@ -30,7 +28,6 @@
     },
     mounted: function () {
       var self = this
-      WidgetUtils.initialise(self.properties, self.transition)
       self.$data.chartObject = echarts.init(document.getElementById(self.$data.chartid))
       this.redrawChart()
     },

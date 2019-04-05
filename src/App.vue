@@ -3,12 +3,7 @@
     <scrollsection v-for="(v, i) in sections" :key="'section'+i.toString()" :index="i" :first="i == 0" :last="i == sections.length - 1" :style="renderSectionStyle(v)" :shared="v.shared" :zone="currentZone">
       <div :id="'inner_section_'+i.toString()" class="section-inner" slot="content">
         <div v-if="v.shouldRender || v.shared" v-for="(w, j) in v.widgets" :key="'widget'+i.toString()+'.'+j.toString()">
-          <textwidget v-if="w.type == 'text'" :properties="w.properties" :transition="w.transition" :index="i" :zone="v.shared ? currentZone : -1"></textwidget>
-          <imagewidget v-if="w.type == 'image'" :properties="w.properties" :transition="w.transition" :index="i"></imagewidget>
-          <guagewidget v-if="w.type == 'guage'" :properties="w.properties" :transition="w.transition" :index="i" :chartdata="w.chartdata" :colors="w.colors" :textcolor="w.properties.color" :title="w.properties.text" sig="guage1"></guagewidget>
-          <piewidget v-if="w.type == 'pie'" :properties="w.properties" :transition="w.transition" :index="i" :chartdata="w.chartdata" :colors="w.colors" :textcolor="w.properties.color" :title="w.properties.text" :hovertitle="w.properties.text" sig="pie1"></piewidget>
-          <pixiticker v-if="w.type == 'ticker'" :properties="w.properties" :transition="w.transition" :index="i"></pixiticker>
-
+          <widgetshell :widget="w" :section="v" :index="i" :zone="v.shared ? currentZone : -1"></widgetshell>
         </div>
       </div>
     </scrollsection>
@@ -25,20 +20,12 @@ import {EventBus} from './components/utils/EventBus.js'
 import {TweenLite} from 'gsap'
 import GeneralUtils from './components/utils/GeneralUtils.js'
 import ScrollSection from './components/ScrollSection.vue'
-import TextWidget from './components/widgets/TextWidget.vue'
-import ImageWidget from './components/widgets/ImageWidget.vue'
-import GuageWidget from './components/widgets/GuageWidget.vue'
-import PieWidget from './components/widgets/PieWidget.vue'
-import PixiTicker from './components/widgets/PixiTicker.vue'
+import WidgetShell from './components/WidgetShell.vue'
 import WidgetUtils from './components/utils/WidgetUtils.js'
 export default {
   components: {
     scrollsection: ScrollSection,
-    textwidget: TextWidget,
-    imagewidget: ImageWidget,
-    guagewidget: GuageWidget,
-    piewidget: PieWidget,
-    pixiticker: PixiTicker
+    widgetshell: WidgetShell
   },
   name: 'app',
   data () {
@@ -407,8 +394,12 @@ div.section-inner{
   left: 50%;
   top: 50%;
   > div{
-    > div,img{
+    > div{
       position:absolute;
+      > div,img{
+        width:100%;
+        height:100%;
+      }
     }
   }
 }
