@@ -35,6 +35,10 @@ export default {
       WidgetUtils: WidgetUtils,
       currentZone: 0,
       innerStyles: [],
+      scrollProps: {
+        tick: 100,
+        shouldPerformCorrection: true
+      },
       sections: [
         {
           title: 'Good',
@@ -348,27 +352,62 @@ export default {
     },
     pageScrolled: function (e) {
       var self = this
+      self.$data.scrollProps.tick = 100
       for (var i = 0; i < self.$data.sections.length; i++) {
-        if (GeneralUtils.getMainScrollElement().scrollTop >= i * GeneralUtils.getHeight()) {
+        if (GeneralUtils.getMainScrollElement().scrollTop >= i * GeneralUtils.getHeight() - (GeneralUtils.getWindowSize().height / 2)) {
           self.$data.sections[i].shouldRender = true
         }
         self.$data.currentZone = WidgetUtils.getCurrentZone(self.$data.sections.length)
         // console.log(i.toString() + 'current zone = ' + self.$data.currentZone)
       }
+      /*
+      if (self.$data.scrollProps.shouldPerformCorrection) {
+        TweenLite.to(self.$data.scrollProps, 0.25, {tick: 0, onComplete: self.scrollCorrection})
+      }
+      */
+      // self.scrollCorrection()
     },
-    goToSection: function (index) {
+    scrollCorrection: function () {
       var self = this
+      if (self.$data.scrollProps.tick === 0 && self.$data.scrollProps.shouldPerformCorrection) {
+        self.goToSection(self.findClosestSection(), 0.25)
+      }
+      // setTimeout(self.scrollCorrection, 100)
+    },
+    findClosestSection: function () {
+      var lowestDist = 99999999
+      var targetIndex = -1
+      // var verticalCenter = GeneralUtils.getMainScrollElement().scrollTop + (GeneralUtils.getWindowSize().height / 2)
+      var inlineSections = document.getElementsByClassName('inline-section')
+      for (var i = 0; i < inlineSections.length; i++) {
+        console.log(inlineSections[i].getBoundingClientRect().top + (GeneralUtils.getWindowSize().height / 2))
+        var dist = Math.abs((inlineSections[i].getBoundingClientRect().top + (GeneralUtils.getWindowSize().height / 2)) - (GeneralUtils.getWindowSize().height / 2))
+        if (dist < lowestDist) {
+          lowestDist = dist
+          targetIndex = i
+        }
+      }
+      return targetIndex
+    },
+    goToSection: function (index, duration) {
+      var self = this
+      var _duration = !duration ? 0.75 : duration
+      self.$data.scrollProps.shouldPerformCorrection = false
       if (index < self.$data.sections.length && index >= 0) {
         var scrollStats = {top: GeneralUtils.getMainScrollElement().scrollTop}
-        TweenLite.to(scrollStats, 0.75, {
+        TweenLite.to(scrollStats, _duration, {
           top: GeneralUtils.getHeight() * (index),
           onUpdate: function (stats) {
             GeneralUtils.getMainScrollElement().scrollTop = stats.top
+            self.$data.scrollProps.shouldPerformCorrection = false
             // document.getElementsByTagName('html')[0].scrollTo(0, stats.top)
           },
           onUpdateParams: [scrollStats],
           onComplete: function () {
             self.$data.sections[index].shouldRender = true
+            setTimeout(function () {
+              self.$data.scrollProps.shouldPerformCorrection = true
+            }, 500)
           }
         })
       }
@@ -407,6 +446,7 @@ export default {
     })
     EventBus.$on('scroll-section-ease-resized', (n) => {
       self.setInnerStyles(n.shared, n.index)
+      self.$data.currentZone = WidgetUtils.getCurrentZone(self.$data.sections.length)
       // self.$data.innerStyles[n.index] = self.getInnerStyle(n.shared)
       // console.log(self.$data.innerStyles)
       // self.goToSection(n.index)
