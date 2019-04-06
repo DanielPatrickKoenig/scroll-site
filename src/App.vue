@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <scrollsection v-for="(v, i) in sections" :key="'section'+i.toString()" :index="i" :first="i == 0" :last="i == sections.length - 1" :style="renderSectionStyle(v)" :shared="v.shared" :zone="currentZone">
+    <scrollsection v-for="(v, i) in sections" :key="'section'+i.toString()" :index="i" :first="i == 0" :last="i == sections.length - 1" :shared="v.shared" :zone="currentZone" :bgstyle="renderSectionStyle(v)" :sidemargin="v.background.image.marginLeft ? v.background.image.marginLeft : 0">
+      <!-- <div slot="background" class="section-background"></div> -->
       <div :id="'inner_section_'+i.toString()" class="section-inner" slot="content">
         <div v-if="v.shouldRender || v.shared" v-for="(w, j) in v.widgets" :key="'widget'+i.toString()+'.'+j.toString()">
           <widgetshell :widget="w" :section="v" :index="i" :zone="v.shared ? currentZone : -1"></widgetshell>
@@ -42,7 +43,7 @@ export default {
           background: {
             color: 'transparent',
             image: {
-              url: 'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2018/06/ultra-wide-mistakes-lead-image.jpg',
+              url: '../src/assets/slide1BG.jpg',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat'
@@ -50,40 +51,37 @@ export default {
           },
           widgets: [
             {
-              type: 'text',
+              type: 'block',
               properties: {
-                text: 'this is a test',
-                color: '#00cc00',
-                left: 100,
-                top: 10,
-                width: 300,
-                font: 'helvetica',
-                opacity: 0
+                color: '#f58759',
+                left: 210,
+                top: 20,
+                width: 0,
+                height: 10,
+                opacity: 1
               },
               transition: {
                 duration: 2,
                 values: {
-                  opacity: 1,
-                  left: 200
+                  width: 200
                 }
               }
             },
             {
               type: 'image',
               properties: {
-                src: 'https://cdn.cnn.com/cnnnext/dam/assets/180612102033-01-baobob-tree-restricted-super-tease.jpg',
-                color: '#00cc00',
-                left: 400,
-                top: 200,
-                width: 300,
-                height: 120,
+                src: '../src/assets/screen1.0.svg',
+                left: 0,
+                top: 80,
+                width: 482 * 1.5,
+                height: 202 * 1.5,
                 opacity: 0
               },
               transition: {
                 duration: 2,
                 values: {
                   opacity: 1,
-                  top: 290
+                  left: 170
                 }
               }
             }
@@ -94,9 +92,9 @@ export default {
           shouldRender: false,
           shared: false,
           background: {
-            color: 'transparent',
+            color: '#fde7de',
             image: {
-              url: 'https://store-images.s-microsoft.com/image/apps.6197.13569891971238701.dab36319-31db-42e5-b32b-edb97c11d8b7.b4ec6763-6d93-4369-87b7-81c25913395f?mode=scale&q=90&h=1080&w=1920',
+              url: '',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat'
@@ -176,10 +174,11 @@ export default {
           background: {
             color: 'transparent',
             image: {
-              url: 'https://cdn2.outdoorphotographer.com/2019/01/Moody_Landscapes_1.jpg',
+              url: '../src/assets/slide3BG.jpg',
               size: 'cover',
               position: 'center',
-              repeat: 'no-repeat'
+              repeat: 'no-repeat',
+              marginLeft: -50
             }
           },
           widgets: [
@@ -262,13 +261,41 @@ export default {
                   }
                 }
               ]
-              // transition: {
-              //   duration: 2,
-              //   values: {
-              //     opacity: 1,
-              //     left: 400
-              //   }
-              // }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/keybenefits2.svg',
+                color: '#ffffff',
+                left: 200,
+                top: 500,
+                width: 538 * 1.5,
+                height: 62 * 1.5,
+                opacity: 0
+              },
+              transition: [
+                {
+                  duration: 0.5,
+                  values: {
+                    opacity: 1,
+                    top: 500
+                  }
+                },
+                {
+                  duration: 0.5,
+                  values: {
+                    opacity: 1,
+                    top: 20
+                  }
+                },
+                {
+                  duration: 0.5,
+                  values: {
+                    opacity: 0,
+                    top: -100
+                  }
+                }
+              ]
             }
             // {
             //   type: 'pie',
@@ -354,7 +381,7 @@ export default {
         // console.log('********* smaller *************')
         marginTopShared = GeneralUtils.getWindowSize().height / -2
       }
-      var sharedStyle = 'width:' + GeneralUtils.getMinWidth().toString() + 'px;height:' + GeneralUtils.getMinHeight().toString() + 'px;margin-left:' + (GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + marginTopShared.toString() + 'px;position: fixed; background-color:rgba(0,0,0,.2);'
+      var sharedStyle = 'width:' + GeneralUtils.getMinWidth().toString() + 'px;height:' + GeneralUtils.getMinHeight().toString() + 'px;margin-left:' + (GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + marginTopShared.toString() + 'px;position: fixed;'
       // var sharedStyle = 'width:' + self.GeneralUtils.getMinWidth().toString() + 'px;height:0px;margin-left:' + (self.GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + (self.GeneralUtils.getMinHeight() / -2).toString() + 'px;top:' + (window.innerHeight - (self.GeneralUtils.getMinHeight() / 2)).toString() + 'px !important;position: fixed;'
       // var sharedStyle = 'width:' + self.GeneralUtils.getMinWidth().toString() + 'px;height:0px;margin-left:' + (self.GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:0px;top:' + ((self.GeneralUtils.getHeight() / 2) - (self.GeneralUtils.getMinHeight() / 2)).toString() + 'px !important;position: fixed;'
       return isShared ? sharedStyle : standardStyle
@@ -389,6 +416,10 @@ export default {
 </script>
 
 <style lang="scss">
+div.section-background{
+  width:100%;
+  height:100%;
+}
 div.section-inner{
   position: absolute;
   left: 50%;
