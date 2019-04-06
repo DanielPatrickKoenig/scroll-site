@@ -1,5 +1,5 @@
 <template>
-  <div :style="'height:'+getHeight()+'px;top:'+getVerticalPosition()+'px;overflow:hidden;'" class="scroll-section">
+  <div :style="'height:'+getHeight()+'px;top:'+getVerticalPosition()+'px;overflow:hidden;'" :class="shared ? 'shared-section scroll-section' : 'inline-section scroll-section'">
     <div class="section-background" :style="'margin-left:'+marginValue.left.toString()+'%;'+bgstyle"></div>
     <slot name="content"></slot>
     <a v-if="!first" class="prev-link" v-on:click="prevClicked">PREV</a>
