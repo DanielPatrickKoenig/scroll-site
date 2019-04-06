@@ -5,6 +5,7 @@
     <guagewidget v-if="widget.type == 'guage'" :chartdata="widget.chartdata" :colors="widget.colors" :textcolor="widget.properties.color" :title="widget.properties.text" sig="guage1"></guagewidget>
     <piewidget v-if="widget.type == 'pie'" :chartdata="widget.chartdata" :colors="widget.colors" :textcolor="widget.properties.color" :title="widget.properties.text" :hovertitle="widget.properties.text" sig="pie1"></piewidget>
     <pixiticker v-if="widget.type == 'ticker'" :properties="widget.properties"></pixiticker>
+    <blockwidget v-if="widget.type == 'block'" :color="widget.properties.color"></blockwidget>
   </div>
 </template>
 <script>
@@ -14,13 +15,15 @@ import ImageWidget from './widgets/ImageWidget.vue'
 import GuageWidget from './widgets/GuageWidget.vue'
 import PieWidget from './widgets/PieWidget.vue'
 import PixiTicker from './widgets/PixiTicker.vue'
+import BlockWidget from './widgets/BlockWidget.vue'
 export default {
   components: {
     textwidget: TextWidget,
     imagewidget: ImageWidget,
     guagewidget: GuageWidget,
     piewidget: PieWidget,
-    pixiticker: PixiTicker
+    pixiticker: PixiTicker,
+    blockwidget: BlockWidget
   },
   props: ['widget', 'section', 'index', 'zone'],
   data () {

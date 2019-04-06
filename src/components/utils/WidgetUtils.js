@@ -71,7 +71,7 @@ function getCurrentZone (sectionCount) {
   var scrollPosition = GeneralUtils.getMainScrollElement().scrollTop
   for (var i = 0; i < sectionCount; i++) {
     var sectionTop = winHeight * i
-    if (scrollPosition >= sectionTop - 1) {
+    if (scrollPosition >= sectionTop - (GeneralUtils.getWindowSize().height / 2)) {
       zone = i
     }
   }

@@ -1,5 +1,6 @@
 <template>
-  <div :style="'height:'+getHeight()+'px;top:'+getVerticalPosition()+'px;'" class="scroll-section">
+  <div :style="'height:'+getHeight()+'px;top:'+getVerticalPosition()+'px;overflow:hidden;'" class="scroll-section">
+    <div class="section-background" :style="'margin-left:'+marginValue.left.toString()+'%;'+bgstyle"></div>
     <slot name="content"></slot>
     <a v-if="!first" class="prev-link" v-on:click="prevClicked">PREV</a>
     <a v-if="!last" class="next-link" v-on:click="nextClicked">NEXT</a>
@@ -7,20 +8,29 @@
 </template>
 <script>
 import {EventBus} from './utils/EventBus.js'
+import {TweenLite} from 'gsap'
 import GeneralUtils from './utils/GeneralUtils.js'
 // import {TweenLite} from 'gsap'
 export default {
-  props: ['index', 'first', 'last', 'shared', 'zone'],
+  props: ['index', 'first', 'last', 'shared', 'zone', 'bgstyle', 'sidemargin'],
   data () {
     return {
       GeneralUtils: GeneralUtils,
       verticalPosition: 0,
-      wHeight: 0
+      wHeight: 0,
+      marginValue: {
+        left: Number(this.sidemargin.toString())
+      },
+      bgID: 'bg_' + Math.random().toString().split('.').join('') + Math.random().toString().split('.').join('') + Math.random().toString().split('.').join('')
     }
   },
   watch: {
     zone: function () {
+      var self = this
       console.log('in zone = ' + this.zone.toString())
+      if (self.zone === self.index) {
+        TweenLite.to(self.$data.marginValue, 1, {left: 0})
+      }
     }
   },
   methods: {
