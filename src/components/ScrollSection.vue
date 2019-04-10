@@ -1,5 +1,5 @@
 <template>
-  <div :style="'height:'+getHeight()+'px;top:'+getVerticalPosition()+'px;overflow:hidden;'" :class="shared ? 'shared-section scroll-section' : 'inline-section scroll-section'">
+  <div :style="'height:'+getHeight()+'px;top:'+(getVerticalPosition()+topoffset)+'px;overflow:hidden;' + bgstyle" :class="shared ? 'shared-section scroll-section' : 'inline-section scroll-section'">
     <div class="section-background" :style="'margin-left:'+marginValue.left.toString()+'%;'+bgstyle"></div>
     <slot name="content"></slot>
     <a v-if="!first" class="prev-link" v-on:click="prevClicked">PREV</a>
@@ -12,7 +12,7 @@ import {TweenLite} from 'gsap'
 import GeneralUtils from './utils/GeneralUtils.js'
 // import {TweenLite} from 'gsap'
 export default {
-  props: ['index', 'first', 'last', 'shared', 'zone', 'bgstyle', 'sidemargin'],
+  props: ['index', 'first', 'last', 'shared', 'zone', 'bgstyle', 'sidemargin', 'topoffset'],
   data () {
     return {
       GeneralUtils: GeneralUtils,
@@ -51,7 +51,7 @@ export default {
     },
     getHeight: function () {
       var self = this
-      return self.shared ? 0 : self.$data.wHeight
+      return self.$data.wHeight
     },
     getVerticalPosition: function () {
       var self = this
@@ -78,6 +78,10 @@ div.scroll-section{
   position:absolute;
   left:0;
   right:0;
+  background-image: none !important;
+  > div.section-background{
+    background-color: transparent !important;
+  }
   > a {
     position:absolute;
     left: 50%;
