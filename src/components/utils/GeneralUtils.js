@@ -19,7 +19,7 @@ function getWidth () {
   // return actualWidth < getMinWidth() ? getMinWidth() : actualWidth
 }
 function getMainScrollElement () {
-  return document.getElementsByTagName('html')[0]
+  return navigator.appVersion.indexOf('Edge') !== -1 ? document.getElementsByTagName('body')[0] : document.getElementsByTagName('html')[0]
 }
 function getEasing (option, direction) {
   var ease = Sine

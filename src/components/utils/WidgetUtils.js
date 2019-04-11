@@ -48,9 +48,6 @@ function renderStyle (properties) {
   return styleString
 }
 function initialise (properties, transition, zone) {
-  if (transition.easeOption) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>' + transition.easeOption)
-  }
   var easingFormula = GeneralUtils.getEasing(transition.easeOption, transition.easeDirection)
   var clonedTrasition = JSON.parse(JSON.stringify(transition))
   clonedTrasition.values.ease = easingFormula
