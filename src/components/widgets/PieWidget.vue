@@ -13,7 +13,7 @@
         chartObject: undefined
       }
     },
-    props: ['chartdata', 'colors', 'textcolor', 'title', 'hovertitle', 'sig'],
+    props: ['chartdata', 'colors', 'textcolor', 'title', 'hovertitle', 'legend', 'sig'],
     watch: {
       chartdata: function () {
         var self = this
@@ -42,6 +42,15 @@
           _values.push(this.chartdata[k])
           _data.push({name: k, value: this.chartdata[k]})
         }
+        // var _legend = self.legend === false ? {} : {
+        //   orient: 'vertical',
+        //   x: 'left',
+        //   y: 'center',
+        //   data: _keys,
+        //   textStyle: {
+        //     color: this.textcolor
+        //   }
+        // }
         var option = {
           title: {
             text: this.title,
@@ -54,15 +63,6 @@
           tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b}: {c} ({d}%)'
-          },
-          legend: {
-            orient: 'vertical',
-            x: 'left',
-            y: 'center',
-            data: _keys,
-            textStyle: {
-              color: this.textcolor
-            }
           },
           series: [
             {
@@ -91,6 +91,17 @@
               data: _data
             }
           ]
+        }
+        if (self.legend !== false) {
+          option.legend = {
+            orient: 'vertical',
+            x: 'left',
+            y: 'center',
+            data: _keys,
+            textStyle: {
+              color: this.textcolor
+            }
+          }
         }
         self.$data.chartObject.setOption(option)
       }

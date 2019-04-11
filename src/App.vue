@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="main-background" :style="'background-image:url(' + mainBackground.image + ');'"></div>
     <scrollsection v-for="(v, i) in sections" :key="'section'+i.toString()" :topoffset="v.shared ? sharedOffset.top : 0" :index="i" :first="i == 0" :last="i == sections.length - 1" :shared="v.shared" :zone="currentZone" :bgstyle="renderSectionStyle(v)" :sidemargin="v.background.image.marginLeft ? v.background.image.marginLeft : 0">
       <!-- <div slot="background" class="section-background"></div> -->
       <div :id="'inner_section_'+i.toString()" class="section-inner" slot="content">
@@ -36,6 +37,9 @@ export default {
       currentZone: 0,
       innerStyles: [],
       innerScale: 1.5,
+      mainBackground: {
+        image: '../src/assets/main_background.jpg'
+      },
       sharedOffset: {
         top: 0,
         zone: 0
@@ -50,7 +54,7 @@ export default {
           shouldRender: false,
           shared: false,
           background: {
-            color: 'transparent',
+            color: '#ffffff',
             image: {
               url: '../src/assets/slide1BG.jpg',
               size: 'cover',
@@ -189,7 +193,7 @@ export default {
           shouldRender: false,
           shared: false,
           background: {
-            color: 'transparent',
+            color: '#ffffff',
             image: {
               url: '../src/assets/slide3BG.jpg',
               size: 'cover',
@@ -240,7 +244,7 @@ export default {
           shouldRender: false,
           shared: false,
           background: {
-            color: 'transparent',
+            color: '#ffffff',
             image: {
               url: '../src/assets/slide4BG.jpg',
               size: '100% 100%',
@@ -350,35 +354,613 @@ export default {
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat',
-              marginLeft: -50
+              marginLeft: GeneralUtils.BackgroundRevealOptions.LEFT
             }
           },
           widgets: [
             {
-              type: 'pie',
-              colors: ['#00aeef', '#fdc689', '#7cc576', '#f26d7d', '#a186be', '#ec008c', '#c69c6d', '#ed145b', '#f26522', '#acd373', '#aba000', '#f5989d'],
+              type: 'image',
               properties: {
-                text: 'Pie Example',
-                color: '#ffffff',
-                left: 200,
-                top: 100,
-                width: 500,
-                height: 500,
+                src: '../src/assets/slide5_image1.svg',
+                left: 450,
+                top: 60,
+                width: 258 * 1.5,
+                height: 90 * 1.5,
                 opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 560
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide5_image2.svg',
+                left: 450,
+                top: 260,
+                width: 280 * 1.5,
+                height: 89 * 1.5,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 560
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide5_image3.svg',
+                left: 450,
+                top: 460,
+                width: 270 * 1.5,
+                height: 32 * 1.5,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 560
+                }
+              }
+            },
+            {
+              type: 'block',
+              properties: {
+                color: '#043c42',
+                left: 560,
+                top: 20,
+                width: 0,
+                height: 10,
+                opacity: 1
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  width: 200
+                }
+              }
+            }
+            // {
+            //   type: 'pie',
+            //   colors: ['#00aeef', '#fdc689', '#7cc576', '#f26d7d', '#a186be', '#ec008c', '#c69c6d', '#ed145b', '#f26522', '#acd373', '#aba000', '#f5989d'],
+            //   properties: {
+            //     text: 'Pie Example',
+            //     color: '#ffffff',
+            //     left: 200,
+            //     top: 100,
+            //     width: 500,
+            //     height: 500,
+            //     opacity: 0
+            //   },
+            //   transition: {
+            //     duration: 0.5,
+            //     values: {
+            //       opacity: 1,
+            //       top: 150
+            //     }
+            //   },
+            //   chartdata: {
+            //     one: 200,
+            //     two: 180,
+            //     three: 400,
+            //     four: 92,
+            //     five: 288
+            //   }
+            // }
+          ]
+        },
+        {
+          title: 'six',
+          shouldRender: false,
+          shared: false,
+          background: {
+            color: '#043c42',
+            image: {
+              url: '',
+              size: 'cover',
+              position: 'center',
+              repeat: 'no-repeat'
+            }
+          },
+          widgets: [
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide6_image1.svg',
+                left: 40,
+                top: 20,
+                width: 352 * 2,
+                height: 84 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 260
+                }
+              }
+            },
+            {
+              type: 'svg_ticker',
+              properties: {
+                color: '#a3cc3f',
+                val: 128,
+                left: 310,
+                top: 180,
+                width: 300 * 1.8,
+                height: 170 * 1.8,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide6_image2.svg',
+                left: 470,
+                top: 550,
+                width: 109 * 2,
+                height: 22 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  top: 480
+                }
+              }
+            }
+          ]
+        },
+        {
+          title: 'seven',
+          shouldRender: false,
+          shared: false,
+          background: {
+            color: '#ffffff',
+            image: {
+              url: '../src/assets/slide7BG.jpg',
+              size: 'cover',
+              position: 'center',
+              repeat: 'no-repeat'
+            }
+          },
+          widgets: [
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide7_image1.svg',
+                left: 130,
+                top: 80 - 40,
+                width: 236 * 1.5,
+                height: 66 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 110
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide7_image2.svg',
+                left: 90,
+                top: 210 - 40,
+                width: 261 * 1.5,
+                height: 102 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 110
+                }
+              }
+            }
+          ]
+        },
+        {
+          title: 'eight',
+          shouldRender: false,
+          shared: false,
+          background: {
+            color: '#a3cc3f',
+            image: {
+              url: '',
+              size: 'cover',
+              position: 'center',
+              repeat: 'no-repeat'
+            }
+          },
+          widgets: [
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image4.svg',
+                left: 650,
+                top: 140 - 40,
+                width: 124 * 1.5,
+                height: 111 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                easeOption: GeneralUtils.EasingOptions.BOUNCE,
+                easeDirection: GeneralUtils.EasingDirections.OUT,
+                values: {
+                  opacity: 1,
+                  left: 570 - 30
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image3.svg',
+                left: 950,
+                top: 140 - 40,
+                width: 124 * 1.5,
+                height: 111 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                easeOption: GeneralUtils.EasingOptions.BOUNCE,
+                easeDirection: GeneralUtils.EasingDirections.OUT,
+                values: {
+                  opacity: 1,
+                  left: 760 - 30
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image2.svg',
+                left: 650,
+                top: 310 - 40,
+                width: 124 * 1.5,
+                height: 111 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                easeOption: GeneralUtils.EasingOptions.BOUNCE,
+                easeDirection: GeneralUtils.EasingDirections.OUT,
+                values: {
+                  opacity: 1,
+                  left: 570 - 30
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image1.svg',
+                left: 950,
+                top: 310 - 40,
+                width: 124 * 1.5,
+                height: 111 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                easeOption: GeneralUtils.EasingOptions.BOUNCE,
+                easeDirection: GeneralUtils.EasingDirections.OUT,
+                values: {
+                  opacity: 1,
+                  left: 760 - 30
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image5.svg',
+                left: 130,
+                top: 80,
+                width: 172 * 1.5,
+                height: 87 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 110 + 40
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image6.svg',
+                left: 130,
+                top: 260,
+                width: 181 * 1.5,
+                height: 70 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 110 + 40
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image7.svg',
+                left: 910 - 30,
+                top: 555 - 40,
+                width: 102 * 1.5,
+                height: 47 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 3,
+                values: {
+                  opacity: 1,
+                  top: 355 - 40
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide8_image8.svg',
+                left: 446 - 30,
+                top: 80 - 40,
+                width: 232 * 1.5,
+                height: 256 * 2,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                easeOption: GeneralUtils.EasingOptions.BOUNCE,
+                easeDirection: GeneralUtils.EasingDirections.OUT,
+                values: {
+                  opacity: 1,
+                  left: 546 - 30
+                }
+              }
+            }
+          ]
+        },
+        {
+          title: 'nine',
+          shouldRender: false,
+          shared: false,
+          background: {
+            color: '#ffffff',
+            image: {
+              url: '../src/assets/slide9BG.jpg',
+              size: 'cover',
+              position: 'center',
+              repeat: 'no-repeat'
+            }
+          },
+          widgets: [
+            {
+              type: 'block',
+              properties: {
+                color: '#f58759',
+                left: 125,
+                top: 50,
+                width: 0,
+                height: 10,
+                opacity: 1
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  width: 200
+                }
+              }
+            },
+            {
+              type: 'block',
+              properties: {
+                color: '#ffffff',
+                left: 610,
+                top: 140,
+                width: 1,
+                height: 10,
+                opacity: 1
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  height: 320
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide9_image1.svg',
+                left: 0 + 90,
+                top: 40 + 80,
+                width: 280 * 1.5,
+                height: 38 * 1.5,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 40 + 90
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide9_image2.svg',
+                left: 50 + 90,
+                top: 120 + 40,
+                width: 275 * 1.5,
+                height: 126 * 1.5,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  top: 200 + 40
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide9_image3.svg',
+                left: 580 + 90,
+                top: 200 + 40,
+                width: 211 * 1.5,
+                height: 169 * 1.5,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  top: 100 + 40
+                }
+              }
+            }
+          ]
+        },
+        {
+          title: 'ten',
+          shouldRender: false,
+          shared: false,
+          background: {
+            color: 'transparent',
+            image: {
+              url: '',
+              size: 'cover',
+              position: 'center',
+              repeat: 'no-repeat'
+            }
+          },
+          widgets: [
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide10_image1.svg',
+                left: 500,
+                top: 110,
+                width: 237 * 1.6,
+                height: 104 * 1.6,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 620
+                }
+              }
+            },
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide10_image2.svg',
+                left: 730,
+                top: 320,
+                width: 190 * 1.6,
+                height: 69 * 1.6,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 740
+                }
+              }
+            },
+            {
+              type: 'pie',
+              colors: ['rgba(255,255,255,.4)', '#9b3368', '#7cc576', '#f26d7d', '#a186be', '#ec008c', '#c69c6d', '#ed145b', '#f26522', '#acd373', '#aba000', '#f5989d'],
+              properties: {
+                text: '',
+                color: '#ffffff',
+                left: 580,
+                top: 220,
+                width: 250,
+                height: 250,
+                opacity: 0,
+                legend: false
               },
               transition: {
                 duration: 0.5,
                 values: {
                   opacity: 1,
-                  top: 150
+                  top: 280
                 }
               },
               chartdata: {
-                one: 200,
-                two: 180,
-                three: 400,
-                four: 92,
-                five: 288
+                Maybe: 10,
+                Love: 90
+              }
+            }
+          ]
+        },
+        {
+          title: 'ten',
+          shouldRender: false,
+          shared: false,
+          background: {
+            color: 'transparent',
+            image: {
+              url: '../src/assets/slide11BG.png',
+              size: 'cover',
+              position: 'center bottom',
+              repeat: 'no-repeat'
+            }
+          },
+          widgets: [
+            {
+              type: 'image',
+              properties: {
+                src: '../src/assets/slide11_image1.svg',
+                left: 500,
+                top: 110,
+                width: 281 * 1.6,
+                height: 120 * 1.6,
+                opacity: 0
+              },
+              transition: {
+                duration: 2,
+                values: {
+                  opacity: 1,
+                  left: 620
+                }
               }
             }
           ]
@@ -413,7 +995,7 @@ export default {
                   duration: 1,
                   values: {
                     opacity: 1,
-                    top: 500
+                    top: 450
                   }
                 },
                 {
@@ -421,6 +1003,55 @@ export default {
                   values: {
                     opacity: 1,
                     top: 110
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
+                  }
+                },
+                {
+                  duration: 1,
+                  values: {
+                    opacity: 0,
+                    top: -400
                   }
                 },
                 {
@@ -537,10 +1168,9 @@ export default {
       var standardStyle = 'width:' + GeneralUtils.getMinWidth().toString() + 'px;height:' + GeneralUtils.getMinHeight().toString() + 'px;margin-left:' + (GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + (GeneralUtils.getMinHeight() / -2).toString() + 'px;transform:scale(' + scale.toString() + ')'
       var marginTopShared = GeneralUtils.getMinHeight() / -2
       // console.log(GeneralUtils.getWindowSize())
-      if (GeneralUtils.getWindowSize().height < GeneralUtils.getMinHeight() && isShared) {
-        // console.log('********* smaller *************')
-        marginTopShared = GeneralUtils.getWindowSize().height / -2
-      }
+      // if (GeneralUtils.getWindowSize().height < GeneralUtils.getMinHeight() && isShared) {
+      //   marginTopShared = GeneralUtils.getWindowSize().height / -2
+      // }
       var sharedStyle = 'width:' + GeneralUtils.getMinWidth().toString() + 'px;height:' + GeneralUtils.getMinHeight().toString() + 'px;margin-left:' + (GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + marginTopShared.toString() + 'px;position: absolute;transform:scale(' + scale.toString() + ')'
       // var sharedStyle = 'width:' + self.GeneralUtils.getMinWidth().toString() + 'px;height:0px;margin-left:' + (self.GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + (self.GeneralUtils.getMinHeight() / -2).toString() + 'px;top:' + (window.innerHeight - (self.GeneralUtils.getMinHeight() / 2)).toString() + 'px !important;position: fixed;'
       // var sharedStyle = 'width:' + self.GeneralUtils.getMinWidth().toString() + 'px;height:0px;margin-left:' + (self.GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:0px;top:' + ((self.GeneralUtils.getHeight() / 2) - (self.GeneralUtils.getMinHeight() / 2)).toString() + 'px !important;position: fixed;'
@@ -556,6 +1186,7 @@ export default {
   },
   mounted: function () {
     var self = this
+    // document.getElementsByTagName('html')[0].setAttribute('style', 'background-image:url("' + self.$data.mainBackground.image + '");')
     for (var i = 0; i < self.$data.sections.length; i++) {
       self.setInnerStyles(self.$data.sections[i].shared, i)
       // self.$data.innerStyles[i] = self.getInnerStyle(self.$data.sections[i].shared)
@@ -568,10 +1199,12 @@ export default {
     EventBus.$on('scroll-section-ease-resized', (n) => {
       self.setInnerStyles(n.shared, n.index)
       self.$data.currentZone = WidgetUtils.getCurrentZone(self.$data.sections.length)
+      self.adjustTopOffset()
       // self.$data.innerStyles[n.index] = self.getInnerStyle(n.shared)
       // console.log(self.$data.innerStyles)
       // self.goToSection(n.index)
     })
+    self.adjustTopOffset()
   }
 }
 </script>
@@ -588,7 +1221,7 @@ div.section-inner{
   > div{
     > div{
       position:absolute;
-      > div,img{
+      > div,img,ul{
         width:100%;
         height:100%;
       }
@@ -614,5 +1247,15 @@ ul.section-navigation{
       border-radius:20px;
     }
   }
+}
+div.main-background{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
 }
 </style>

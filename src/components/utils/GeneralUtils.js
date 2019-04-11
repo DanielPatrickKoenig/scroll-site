@@ -1,3 +1,4 @@
+import {Power0, Power2, Power3, Power4, Back, Bounce, Circ, Elastic, Expo, Linear, RoughEase, Sine, SlowMo, SteppedEase} from 'gsap'
 function getWindowSize () {
   return {width: window.innerWidth, height: window.innerHeight}
 }
@@ -9,14 +10,136 @@ function getMinWidth () {
 }
 function getHeight () {
   var actualHeight = window.innerHeight
-  return actualHeight < getMinHeight() ? getMinHeight() : actualHeight
+  return actualHeight
+  // return actualHeight < getMinHeight() ? getMinHeight() : actualHeight
 }
 function getWidth () {
   var actualWidth = window.innerWidth
-  return actualWidth < getMinWidth() ? getMinWidth() : actualWidth
+  return actualWidth
+  // return actualWidth < getMinWidth() ? getMinWidth() : actualWidth
 }
 function getMainScrollElement () {
   return document.getElementsByTagName('html')[0]
+}
+function getEasing (option, direction) {
+  var ease = Sine
+  switch (option) {
+    case EasingOptions.LINEAR:
+    {
+      ease = Linear
+      break
+    }
+    case EasingOptions.SINE:
+    {
+      ease = Sine
+      break
+    }
+    case EasingOptions.BACK:
+    {
+      ease = Back
+      break
+    }
+    case EasingOptions.POWER0:
+    {
+      ease = Power0
+      break
+    }
+    case EasingOptions.POWER2:
+    {
+      ease = Power2
+      break
+    }
+    case EasingOptions.POWER3:
+    {
+      ease = Power3
+      break
+    }
+    case EasingOptions.POWER4:
+    {
+      ease = Power4
+      break
+    }
+    case EasingOptions.CIRC:
+    {
+      ease = Circ
+      break
+    }
+    case EasingOptions.EXPO:
+    {
+      ease = Expo
+      break
+    }
+    case EasingOptions.ROUGHEASE:
+    {
+      ease = RoughEase
+      break
+    }
+    case EasingOptions.SLOWMO:
+    {
+      ease = SlowMo
+      break
+    }
+    case EasingOptions.STEPPEDEASE:
+    {
+      ease = SteppedEase
+      break
+    }
+    case EasingOptions.BOUNCE:
+    {
+      ease = Bounce
+      break
+    }
+    case EasingOptions.ELASTIC:
+    {
+      ease = Elastic
+      break
+    }
+  }
+  var formula = ease.easeInOut
+  switch (direction) {
+    case EasingDirections.IN:
+    {
+      formula = ease.easeIn
+      break
+    }
+    case EasingDirections.OUT:
+    {
+      formula = ease.easeOut
+      break
+    }
+    case EasingDirections.INOUT:
+    {
+      formula = ease.easeInOut
+      break
+    }
+  }
+  return formula
+}
+const EasingOptions = {
+  LINEAR: 0,
+  SINE: 16,
+  BACK: 8,
+  BOUNCE: 2,
+  ELASTIC: 1,
+  POWER0: 3,
+  POWER1: 4,
+  POWER2: 5,
+  POWER3: 6,
+  POWER4: 7,
+  CIRC: 9,
+  EXPO: 11,
+  ROUGHEASE: 15,
+  SLOWMO: 18,
+  STEPPEDEASE: 19
+}
+const EasingDirections = {
+  IN: 0,
+  OUT: 1,
+  INOUT: 2
+}
+const BackgroundRevealOptions = {
+  LEFT: -50,
+  RIGHT: 50
 }
 const GeneralUtils = {
   getHeight: getHeight,
@@ -24,6 +147,10 @@ const GeneralUtils = {
   getMinHeight: getMinHeight,
   getMinWidth: getMinWidth,
   getWindowSize: getWindowSize,
-  getMainScrollElement: getMainScrollElement
+  getMainScrollElement: getMainScrollElement,
+  EasingOptions: EasingOptions,
+  BackgroundRevealOptions: BackgroundRevealOptions,
+  EasingDirections: EasingDirections,
+  getEasing: getEasing
 }
 export default GeneralUtils

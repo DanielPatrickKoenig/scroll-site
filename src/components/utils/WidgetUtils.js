@@ -48,10 +48,16 @@ function renderStyle (properties) {
   return styleString
 }
 function initialise (properties, transition, zone) {
+  if (transition.easeOption) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>' + transition.easeOption)
+  }
+  var easingFormula = GeneralUtils.getEasing(transition.easeOption, transition.easeDirection)
+  var clonedTrasition = JSON.parse(JSON.stringify(transition))
+  clonedTrasition.values.ease = easingFormula
   if (zone > -1) {
-    TweenLite.to(properties, transition[Number(zone)].duration, transition[Number(zone)].values)
+    TweenLite.to(properties, transition[Number(zone)].duration, clonedTrasition[Number(zone)].values)
   } else {
-    TweenLite.to(properties, transition.duration, transition.values)
+    TweenLite.to(properties, transition.duration, clonedTrasition.values)
   }
 }
 function generateID () {
