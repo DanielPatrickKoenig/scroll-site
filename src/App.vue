@@ -38,7 +38,7 @@ export default {
       innerStyles: [],
       innerScale: 1.5,
       mainBackground: {
-        image: '../src/assets/main_background.jpg'
+        image: 'src/assets/main_background.jpg'
       },
       sharedOffset: {
         top: 0,
@@ -56,7 +56,7 @@ export default {
           background: {
             color: '#ffffff',
             image: {
-              url: '../src/assets/slide1BG.jpg',
+              url: 'src/assets/slide1BG.jpg',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat'
@@ -83,7 +83,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/screen1.0.svg',
+                src: 'src/assets/screen1.0.svg',
                 left: 0,
                 top: 80,
                 width: 482 * 1.5,
@@ -117,9 +117,9 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide2_image1.svg',
+                src: 'src/assets/slide2_image1.svg',
                 left: 182,
-                top: 150,
+                top: 200,
                 width: 231 * 1.2,
                 height: 242 * 1.2,
                 opacity: 0
@@ -127,17 +127,16 @@ export default {
               transition: {
                 duration: 2,
                 values: {
-                  opacity: 1,
-                  top: 200
+                  opacity: 1
                 }
               }
             },
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide2_image2.svg',
+                src: 'src/assets/slide2_image2.svg',
                 left: 467,
-                top: 150,
+                top: 200,
                 width: 228 * 1.2,
                 height: 309 * 1.2,
                 opacity: 0
@@ -145,17 +144,16 @@ export default {
               transition: {
                 duration: 2,
                 values: {
-                  opacity: 1,
-                  top: 200
+                  opacity: 1
                 }
               }
             },
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide2_image3.svg',
+                src: 'src/assets/slide2_image3.svg',
                 left: 746,
-                top: 150,
+                top: 200,
                 width: 222 * 1.2,
                 height: 309 * 1.2,
                 opacity: 0
@@ -163,15 +161,14 @@ export default {
               transition: {
                 duration: 2,
                 values: {
-                  opacity: 1,
-                  top: 200
+                  opacity: 1
                 }
               }
             },
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide2_image4.svg',
+                src: 'src/assets/slide2_image4.svg',
                 left: 455,
                 top: 20,
                 width: 229 * 1.3,
@@ -195,7 +192,7 @@ export default {
           background: {
             color: '#ffffff',
             image: {
-              url: '../src/assets/slide3BG.jpg',
+              url: 'src/assets/slide3BG.jpg',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat'
@@ -222,7 +219,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide3_image1.svg',
+                src: 'src/assets/slide3_image1.svg',
                 left: 0,
                 top: 250,
                 width: 210 * 1.5,
@@ -246,7 +243,7 @@ export default {
           background: {
             color: '#ffffff',
             image: {
-              url: '../src/assets/slide4BG.jpg',
+              url: 'src/assets/slide4BG.jpg',
               size: '100% 100%',
               position: 'center',
               repeat: 'no-repeat'
@@ -273,7 +270,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide4_image1.svg',
+                src: 'src/assets/slide4_image1.svg',
                 left: 0,
                 top: 120,
                 width: 200 * 1,
@@ -291,7 +288,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide4_image2.svg',
+                src: 'src/assets/slide4_image2.svg',
                 left: 290,
                 top: 0,
                 width: 271 * 1,
@@ -308,7 +305,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide4_image3.svg',
+                src: 'src/assets/slide4_image3.svg',
                 left: 700,
                 top: 40,
                 width: 271 * 1,
@@ -326,7 +323,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide4_image4.svg',
+                src: 'src/assets/slide4_image4.svg',
                 left: 100,
                 top: 480,
                 width: 511 * 1.6,
@@ -350,7 +347,7 @@ export default {
           background: {
             color: '#3fa5a5',
             image: {
-              url: '../src/assets/slide5BG.png',
+              url: 'src/assets/slide5BG.png',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat',
@@ -361,15 +358,15 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide5_image1.svg',
-                left: 450,
+                src: 'src/assets/slide5_image1.svg',
+                left: 750,
                 top: 60,
                 width: 258 * 1.5,
                 height: 90 * 1.5,
                 opacity: 0
               },
               transition: {
-                duration: 2,
+                duration: 0.8,
                 values: {
                   opacity: 1,
                   left: 560
@@ -379,15 +376,15 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide5_image2.svg',
-                left: 450,
+                src: 'src/assets/slide5_image2.svg',
+                left: 750,
                 top: 260,
                 width: 280 * 1.5,
                 height: 89 * 1.5,
                 opacity: 0
               },
               transition: {
-                duration: 2,
+                duration: 1.2,
                 values: {
                   opacity: 1,
                   left: 560
@@ -397,8 +394,8 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide5_image3.svg',
-                left: 450,
+                src: 'src/assets/slide5_image3.svg',
+                left: 750,
                 top: 460,
                 width: 270 * 1.5,
                 height: 32 * 1.5,
@@ -407,7 +404,7 @@ export default {
               transition: {
                 duration: 2,
                 values: {
-                  opacity: 1,
+                  opacity: 1.6,
                   left: 560
                 }
               }
@@ -475,7 +472,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide6_image1.svg',
+                src: 'src/assets/slide6_image1.svg',
                 left: 40,
                 top: 20,
                 width: 352 * 2,
@@ -511,7 +508,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide6_image2.svg',
+                src: 'src/assets/slide6_image2.svg',
                 left: 470,
                 top: 550,
                 width: 109 * 2,
@@ -535,7 +532,7 @@ export default {
           background: {
             color: '#ffffff',
             image: {
-              url: '../src/assets/slide7BG.jpg',
+              url: 'src/assets/slide7BG.jpg',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat'
@@ -545,7 +542,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide7_image1.svg',
+                src: 'src/assets/slide7_image1.svg',
                 left: 130,
                 top: 80 - 40,
                 width: 236 * 1.5,
@@ -563,7 +560,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide7_image2.svg',
+                src: 'src/assets/slide7_image2.svg',
                 left: 90,
                 top: 210 - 40,
                 width: 261 * 1.5,
@@ -597,8 +594,8 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image4.svg',
-                left: 650,
+                src: 'src/assets/slide8_image4.svg',
+                left: 570 - 30 + 200,
                 top: 140 - 40,
                 width: 124 * 1.5,
                 height: 111 * 2,
@@ -606,8 +603,8 @@ export default {
               },
               transition: {
                 duration: 2,
-                easeOption: GeneralUtils.EasingOptions.BOUNCE,
-                easeDirection: GeneralUtils.EasingDirections.OUT,
+                easeOption: GeneralUtils.EasingOptions.SINE,
+                easeDirection: GeneralUtils.EasingDirections.INOUT,
                 values: {
                   opacity: 1,
                   left: 570 - 30
@@ -617,8 +614,8 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image3.svg',
-                left: 950,
+                src: 'src/assets/slide8_image3.svg',
+                left: 760 - 30 + 200,
                 top: 140 - 40,
                 width: 124 * 1.5,
                 height: 111 * 2,
@@ -626,8 +623,8 @@ export default {
               },
               transition: {
                 duration: 2,
-                easeOption: GeneralUtils.EasingOptions.BOUNCE,
-                easeDirection: GeneralUtils.EasingDirections.OUT,
+                easeOption: GeneralUtils.EasingOptions.SINE,
+                easeDirection: GeneralUtils.EasingDirections.INOUT,
                 values: {
                   opacity: 1,
                   left: 760 - 30
@@ -637,8 +634,8 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image2.svg',
-                left: 650,
+                src: 'src/assets/slide8_image2.svg',
+                left: 570 - 30 + 200,
                 top: 310 - 40,
                 width: 124 * 1.5,
                 height: 111 * 2,
@@ -646,8 +643,8 @@ export default {
               },
               transition: {
                 duration: 2,
-                easeOption: GeneralUtils.EasingOptions.BOUNCE,
-                easeDirection: GeneralUtils.EasingDirections.OUT,
+                easeOption: GeneralUtils.EasingOptions.SINE,
+                easeDirection: GeneralUtils.EasingDirections.INOUT,
                 values: {
                   opacity: 1,
                   left: 570 - 30
@@ -657,8 +654,8 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image1.svg',
-                left: 950,
+                src: 'src/assets/slide8_image1.svg',
+                left: 760 - 30 + 200,
                 top: 310 - 40,
                 width: 124 * 1.5,
                 height: 111 * 2,
@@ -666,8 +663,8 @@ export default {
               },
               transition: {
                 duration: 2,
-                easeOption: GeneralUtils.EasingOptions.BOUNCE,
-                easeDirection: GeneralUtils.EasingDirections.OUT,
+                easeOption: GeneralUtils.EasingOptions.SINE,
+                easeDirection: GeneralUtils.EasingDirections.INOUT,
                 values: {
                   opacity: 1,
                   left: 760 - 30
@@ -677,7 +674,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image5.svg',
+                src: 'src/assets/slide8_image5.svg',
                 left: 130,
                 top: 80,
                 width: 172 * 1.5,
@@ -695,7 +692,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image6.svg',
+                src: 'src/assets/slide8_image6.svg',
                 left: 130,
                 top: 260,
                 width: 181 * 1.5,
@@ -713,7 +710,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image7.svg',
+                src: 'src/assets/slide8_image7.svg',
                 left: 910 - 30,
                 top: 555 - 40,
                 width: 102 * 1.5,
@@ -731,8 +728,8 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide8_image8.svg',
-                left: 446 - 30,
+                src: 'src/assets/slide8_image8.svg',
+                left: 546 - 30 + 200,
                 top: 80 - 40,
                 width: 232 * 1.5,
                 height: 256 * 2,
@@ -740,8 +737,8 @@ export default {
               },
               transition: {
                 duration: 2,
-                easeOption: GeneralUtils.EasingOptions.BOUNCE,
-                easeDirection: GeneralUtils.EasingDirections.OUT,
+                easeOption: GeneralUtils.EasingOptions.SINE,
+                easeDirection: GeneralUtils.EasingDirections.INOUT,
                 values: {
                   opacity: 1,
                   left: 546 - 30
@@ -757,7 +754,7 @@ export default {
           background: {
             color: '#ffffff',
             image: {
-              url: '../src/assets/slide9BG.jpg',
+              url: 'src/assets/slide9BG.jpg',
               size: 'cover',
               position: 'center',
               repeat: 'no-repeat'
@@ -801,7 +798,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide9_image1.svg',
+                src: 'src/assets/slide9_image1.svg',
                 left: 0 + 90,
                 top: 40 + 80,
                 width: 280 * 1.5,
@@ -819,7 +816,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide9_image2.svg',
+                src: 'src/assets/slide9_image2.svg',
                 left: 50 + 90,
                 top: 120 + 40,
                 width: 275 * 1.5,
@@ -837,7 +834,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide9_image3.svg',
+                src: 'src/assets/slide9_image3.svg',
                 left: 580 + 90,
                 top: 200 + 40,
                 width: 211 * 1.5,
@@ -871,7 +868,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide10_image1.svg',
+                src: 'src/assets/slide10_image1.svg',
                 left: 500,
                 top: 110,
                 width: 237 * 1.6,
@@ -889,7 +886,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide10_image2.svg',
+                src: 'src/assets/slide10_image2.svg',
                 left: 730,
                 top: 320,
                 width: 190 * 1.6,
@@ -938,7 +935,7 @@ export default {
           background: {
             color: 'transparent',
             image: {
-              url: '../src/assets/slide11BG.png',
+              url: 'src/assets/slide11BG.png',
               size: 'cover',
               position: 'center bottom',
               repeat: 'no-repeat'
@@ -948,18 +945,17 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/slide11_image1.svg',
-                left: 500,
+                src: 'src/assets/slide11_image1.svg',
+                left: 620,
                 top: 110,
                 width: 281 * 1.6,
                 height: 120 * 1.6,
                 opacity: 0
               },
               transition: {
-                duration: 2,
+                duration: 0.5,
                 values: {
-                  opacity: 1,
-                  left: 620
+                  opacity: 1
                 }
               }
             }
@@ -982,7 +978,7 @@ export default {
             {
               type: 'image',
               properties: {
-                src: '../src/assets/keybenefits2.svg',
+                src: 'src/assets/keybenefits2.svg',
                 color: '#ffffff',
                 left: 200,
                 top: 500,
@@ -1232,7 +1228,7 @@ ul.section-navigation{
   display: inline-block;
   width: 30px;
   position:fixed;
-  bottom: 5px;
+  top: 5px;
   right: 5px;
   margin:0;
   padding: 0;
