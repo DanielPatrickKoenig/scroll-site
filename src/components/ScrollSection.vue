@@ -88,6 +88,7 @@ div.scroll-section{
     width: 50px;
     margin-left: -25px;
     color: #ffffff;
+    display: none;
   }
   > a.prev-link {
     top: 5px;
