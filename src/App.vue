@@ -10,8 +10,8 @@
       </div>
     </scrollsection>
     <ul class="section-navigation">
-      <li v-if="!v.shared" v-for="(v, i) in sections" :key="'section_marker'+i.toString()">
-        <div v-on:click="goToSection(i)"></div>
+      <li v-if="!v.shared && v.title != ''" v-for="(v, i) in sections" :key="'section_marker'+i.toString()" v-on:click="goToSection(i)" :class="currentZone == i ? 'active-marker' : 'inactive-marker'">
+        <div></div><label>{{v.title.toUpperCase()}}</label>
       </li>
     </ul>
   </div>
@@ -50,7 +50,7 @@ export default {
       },
       sections: [
         {
-          title: 'Good',
+          title: 'What',
           shouldRender: false,
           shared: false,
           background: {
@@ -101,7 +101,7 @@ export default {
           ]
         },
         {
-          title: 'Bad',
+          title: '',
           shouldRender: false,
           shared: false,
           background: {
@@ -186,7 +186,7 @@ export default {
           ]
         },
         {
-          title: 'three',
+          title: 'How',
           shouldRender: false,
           shared: false,
           background: {
@@ -237,7 +237,7 @@ export default {
           ]
         },
         {
-          title: 'four',
+          title: '',
           shouldRender: false,
           shared: false,
           background: {
@@ -341,7 +341,7 @@ export default {
           ]
         },
         {
-          title: 'Five',
+          title: 'Who',
           shouldRender: false,
           shared: false,
           background: {
@@ -456,7 +456,7 @@ export default {
           ]
         },
         {
-          title: 'six',
+          title: '',
           shouldRender: false,
           shared: false,
           background: {
@@ -526,7 +526,7 @@ export default {
           ]
         },
         {
-          title: 'seven',
+          title: 'Why',
           shouldRender: false,
           shared: false,
           background: {
@@ -578,7 +578,7 @@ export default {
           ]
         },
         {
-          title: 'eight',
+          title: '',
           shouldRender: false,
           shared: false,
           background: {
@@ -748,7 +748,7 @@ export default {
           ]
         },
         {
-          title: 'nine',
+          title: 'Deets',
           shouldRender: false,
           shared: false,
           background: {
@@ -852,7 +852,7 @@ export default {
           ]
         },
         {
-          title: 'ten',
+          title: '',
           shouldRender: false,
           shared: false,
           background: {
@@ -929,7 +929,7 @@ export default {
           ]
         },
         {
-          title: 'ten',
+          title: '',
           shouldRender: false,
           shared: false,
           background: {
@@ -1234,13 +1234,31 @@ ul.section-navigation{
   padding: 0;
   > li{
     display:block;
-    padding:2px;
+    padding:4px;
     margin: 0;
+    position:relative;
+    opacity: .4;
     > div{
-      background-color: #ffffff;
+      box-shadow: 0 0 0 2px #ffffff inset;
       width:20px;
       height:20px;
       border-radius:20px;
+    }
+    > label{
+      position: absolute;
+      padding-right: 30px;
+      right:0;
+      top:7px;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: right;
+      font-size: 11px;
+    }
+  }
+  > li.active-marker{
+    opacity: 1;
+    > div{
+      background-color: #ffffff;
     }
   }
 }
