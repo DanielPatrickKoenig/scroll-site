@@ -1,6 +1,13 @@
 import {Power0, Power2, Power3, Power4, Back, Bounce, Circ, Elastic, Expo, Linear, RoughEase, Sine, SlowMo, SteppedEase} from 'gsap'
+function isTablet () {
+  return document.querySelector('#is_tablet_value_container').innerHTML.toString() === 'true'
+}
+function isMobile () {
+  return document.querySelector('#is_mobile_value_container').innerHTML.toString() === 'true'
+}
 function getWindowSize () {
-  return {width: window.innerWidth, height: window.innerHeight}
+  var size = isMobile() ? {width: window.innerWidth, height: getMinHeight()} : {width: window.innerWidth, height: window.innerHeight}
+  return size
 }
 function getMinHeight () {
   return 600
@@ -9,7 +16,7 @@ function getMinWidth () {
   return 1200
 }
 function getHeight () {
-  var actualHeight = window.innerHeight
+  var actualHeight = isMobile() ? getMinHeight() : window.innerHeight
   return actualHeight
   // return actualHeight < getMinHeight() ? getMinHeight() : actualHeight
 }
@@ -19,7 +26,8 @@ function getWidth () {
   // return actualWidth < getMinWidth() ? getMinWidth() : actualWidth
 }
 function getMainScrollElement () {
-  return navigator.appVersion.indexOf('Edge') !== -1 ? document.getElementsByTagName('body')[0] : document.getElementsByTagName('html')[0]
+  var userAgent = window.navigator.userAgent
+  return navigator.appVersion.indexOf('Edge') !== -1 || userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) ? document.getElementsByTagName('body')[0] : document.getElementsByTagName('html')[0]
 }
 function getEasing (option, direction) {
   var ease = Sine
@@ -151,6 +159,8 @@ const GeneralUtils = {
   EasingOptions: EasingOptions,
   BackgroundRevealOptions: BackgroundRevealOptions,
   EasingDirections: EasingDirections,
-  getEasing: getEasing
+  getEasing: getEasing,
+  isTablet: isTablet,
+  isMobile: isMobile
 }
 export default GeneralUtils

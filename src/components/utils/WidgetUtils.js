@@ -50,10 +50,11 @@ function renderStyle (properties) {
 function initialise (properties, transition, zone) {
   var easingFormula = GeneralUtils.getEasing(transition.easeOption, transition.easeDirection)
   var clonedTrasition = JSON.parse(JSON.stringify(transition))
-  clonedTrasition.values.ease = easingFormula
   if (zone > -1) {
+    console.log(clonedTrasition)
     TweenLite.to(properties, transition[Number(zone)].duration, clonedTrasition[Number(zone)].values)
   } else {
+    clonedTrasition.values.ease = easingFormula
     TweenLite.to(properties, transition.duration, clonedTrasition.values)
   }
 }
