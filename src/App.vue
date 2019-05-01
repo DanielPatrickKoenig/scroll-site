@@ -10,7 +10,7 @@
       </div>
     </scrollsection>
     <ul class="section-navigation">
-      <li v-if="!v.shared && v.title != ''" v-for="(v, i) in sections" :key="'section_marker'+i.toString()" v-on:click="goToSection(i)" :class="currentZone == i ? 'active-marker' : 'inactive-marker'">
+      <li v-if="!v.shared" v-for="(v, i) in sections" :key="'section_marker'+i.toString()" v-on:click="goToSection(i)" :class="currentZone == i ? 'active-marker' : 'inactive-marker'">
         <div></div><label>{{v.title.toUpperCase()}}</label>
       </li>
     </ul>
@@ -1097,6 +1097,7 @@ export default {
     },
     pageScrolled: function (e) {
       var self = this
+      // if (!GeneralUtils.isMobile()) {
       self.$data.scrollProps.tick = 100
       for (var i = 0; i < self.$data.sections.length; i++) {
         if (GeneralUtils.getMainScrollElement().scrollTop >= i * GeneralUtils.getHeight() - (GeneralUtils.getWindowSize().height / 2)) {
@@ -1110,6 +1111,7 @@ export default {
         self.adjustTopOffset()
       }
       // self.scrollCorrection()
+      // }
     },
     scrollCorrection: function () {
       var self = this
@@ -1160,7 +1162,7 @@ export default {
     },
     getInnerStyle: function (isShared) {
       var baseSize = 700
-      var scale = GeneralUtils.getWindowSize().height / baseSize
+      var scale = GeneralUtils.isMobile() ? 1 : GeneralUtils.getWindowSize().height / baseSize
       var standardStyle = 'width:' + GeneralUtils.getMinWidth().toString() + 'px;height:' + GeneralUtils.getMinHeight().toString() + 'px;margin-left:' + (GeneralUtils.getMinWidth() / -2).toString() + 'px;margin-top:' + (GeneralUtils.getMinHeight() / -2).toString() + 'px;transform:scale(' + scale.toString() + ')'
       var marginTopShared = GeneralUtils.getMinHeight() / -2
       // console.log(GeneralUtils.getWindowSize())
@@ -1231,7 +1233,7 @@ ul.section-navigation{
   top: 5px;
   right: 5px;
   margin:0;
-  padding: 0;
+  padding: 8px;
   > li{
     display:block;
     padding:4px;
