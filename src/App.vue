@@ -19,7 +19,7 @@
 
 <script>
 import {EventBus} from './components/utils/EventBus.js'
-import {TweenLite} from 'gsap'
+import {TweenLite, Sine} from 'gsap'
 import GeneralUtils from './components/utils/GeneralUtils.js'
 import ScrollSection from './components/ScrollSection.vue'
 import WidgetShell from './components/WidgetShell.vue'
@@ -1088,11 +1088,19 @@ export default {
       }
       return styleString
     },
-    adjustTopOffset: function () {
+    adjustTopOffset: function (suspend) {
       var self = this
       if (self.$data.currentZone !== self.$data.sharedOffset.zone) {
         self.$data.sharedOffset.zone = self.$data.currentZone
-        TweenLite.to(self.$data.sharedOffset, 1, {top: self.$data.currentZone * GeneralUtils.getWindowSize().height})
+        TweenLite.to(self.$data.sharedOffset, 1, {
+          top: self.$data.currentZone * GeneralUtils.getWindowSize().height,
+          ease: Sine.inOut,
+          onComplete: function () {
+            if (!suspend) {
+              self.adjustTopOffset(true)
+            }
+          }
+        })
       }
     },
     pageScrolled: function (e) {
